@@ -32,6 +32,35 @@ char* decimal_to_binary(int number) {
     return result;
 }
 
+char* decimal_to_octal(int number) {
+    int iterator = 0;
+    int number_copy = number;
+    while (number_copy != 0) {
+        iterator++;
+        number_copy /= 8;
+    }
+    
+    char* remainders = malloc((iterator + 1) * sizeof(char));
+    if (remainders == NULL) return NULL;
+    int i = 0;
+    while (number != 0) {
+        remainders[i] = (number % 8) + '0';
+        i++;
+        number /= 8;
+    }
+    remainders[i] = '\0';
+    
+    char* result = malloc((i + 1) * sizeof(char));
+    if (result == NULL) return NULL;
+    int size = i;
+    for (int j = 0; j < size; j++) {
+        result[j] = remainders[size - j - 1];
+    }
+    result[size] = '\0';
+
+    return result;
+}
+
 int main() {
     int number = 20;
     char* get_decimal_to_binary = decimal_to_binary(number);
@@ -39,6 +68,13 @@ int main() {
     if (get_decimal_to_binary != NULL) {
         printf("%s\n", get_decimal_to_binary);
         free(get_decimal_to_binary);
+    }
+
+    number = 175;
+    char* get_decimal_to_octal = decimal_to_octal(number);
+    if (get_decimal_to_binary != NULL) {
+        printf("\n%s\n", get_decimal_to_octal);
+        free(get_decimal_to_octal);
     }
     return 0;
 }
