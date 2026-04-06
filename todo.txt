@@ -1,0 +1,2 @@
+- Create whole integer decimal to other radix converter (binary, octal, and hexadecimal for now)
+- Use the same approach for binary, octal, and hexadecimal to other radices. 
